@@ -34,8 +34,8 @@ type ActionsType = RemoveTodolistActionType
     | SetTodolistsActionType
 
 const initialState: Array<TodolistDomainType> = [
-    /*{id: todolistId1, title: 'What to learn', filter: 'all', addedDate: '', order: 0},
-    {id: todolistId2, title: 'What to buy', filter: 'all', addedDate: '', order: 0}*/
+    // {id: todolistId1, title: 'What to learn', filter: 'all', addedDate: '', order: 0},
+    // {id: todolistId2, title: 'What to buy', filter: 'all', addedDate: '', order: 0}
 ]
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
@@ -60,7 +60,6 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
         case 'CHANGE-TODOLIST-TITLE': {
             const todolist = state.find(tl => tl.id === action.id);
             if (todolist) {
-                // если нашёлся - изменим ему заголовок
                 todolist.title = action.title;
             }
             return [...state]
