@@ -2,3 +2,11 @@
     display: flex;
     align-content: space-between;
 }
+
+.li {
+    list-style-type: none;
+}
+
+.span {
+    padding-left: 10px;
+}

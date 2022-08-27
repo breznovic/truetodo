@@ -19,12 +19,6 @@ function App() {
         {id: v1(), task: 'React', isDone: false},
     ])
 
-    // const tasks2 = [
-    //     {id: v1(), task: 'Milk', isDone: false},
-    //     {id: v1(), task: 'Bread', isDone: true},
-    //     {id: v1(), task: 'Book', isDone: false},
-    // ]
-
     let [filter, setFilter] = useState<FilterType>('all')
 
     let tasksForTodolist = tasks
@@ -45,6 +39,20 @@ function App() {
         setFilter(value)
     }
 
+    function addTask(title: string) {
+        let newTask = {id: v1(), task: title, isDone: false}
+        let addNewTask = [...tasks, newTask]
+        setTasks(addNewTask)
+    }
+
+    function changeStatus(taskId: string, isDone: boolean) {
+        let task = tasks.find(t => t.id === taskId)
+        if (task) {
+            task.isDone = isDone
+        }
+        setTasks([...tasks])
+    }
+
     return (
         <div className={s.img}>
             <div className={s.element}>
@@ -52,6 +60,8 @@ function App() {
                           tasks={tasksForTodolist}
                           deleteTask={deleteTask}
                           changeFilter={changeFilter}
+                          addTask={addTask}
+                          changeStatus={changeStatus}
                 />
             </div>
         </div>
