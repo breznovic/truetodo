@@ -3,13 +3,14 @@ import {Button, Checkbox, Input} from "antd"
 import 'antd/dist/antd.css'
 import {ButtonGroup} from "./common/ButtonGroup"
 import s from './Todolist.module.css'
-import {TaskType} from "../App"
+import {FilterType, TaskType} from "../App"
 import {DeleteTwoTone} from "@ant-design/icons"
 
 type PropsType = {
     name: string
     tasks: TaskType[]
     deleteTask: (taskId: string) => void
+    changeFilter: (value: FilterType) => void
 }
 
 const Todolist = (props: PropsType) => {
@@ -28,7 +29,7 @@ const Todolist = (props: PropsType) => {
                 </ul>
             )}
             <div>
-                <ButtonGroup/>
+                <ButtonGroup changeFilter={props.changeFilter}/>
             </div>
         </div>
     )

@@ -9,6 +9,8 @@ export type TaskType = {
     isDone: boolean
 }
 
+export type FilterType = 'all' | 'active' | 'completed'
+
 function App() {
 
     let [tasks, setTasks] = useState([
@@ -23,15 +25,34 @@ function App() {
     //     {id: v1(), task: 'Book', isDone: false},
     // ]
 
-    function deleteTask (id: string) {
+    let [filter, setFilter] = useState<FilterType>('all')
+
+    let tasksForTodolist = tasks
+
+    if (filter === 'active') {
+        tasksForTodolist = tasks.filter(t => !t.isDone)
+    }
+    if (filter === 'completed') {
+        tasksForTodolist = tasks.filter(t => t.isDone)
+    }
+
+    function deleteTask(id: string) {
         let filteredTasks = tasks.filter(t => t.id !== id)
         setTasks(filteredTasks)
+    }
+
+    function changeFilter(value: FilterType) {
+        setFilter(value)
     }
 
     return (
         <div className={s.img}>
             <div className={s.element}>
-                <Todolist name='What to learn' tasks={tasks} deleteTask={deleteTask}/>
+                <Todolist name='What to learn'
+                          tasks={tasksForTodolist}
+                          deleteTask={deleteTask}
+                          changeFilter={changeFilter}
+                />
             </div>
         </div>
     )
