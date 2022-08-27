@@ -1,25 +1,34 @@
 import React from 'react'
 import {Button, Checkbox, Input} from "antd"
 import 'antd/dist/antd.css'
-import {ButtonGroup} from "./common/ButtonGroup";
+import {ButtonGroup} from "./common/ButtonGroup"
 import s from './Todolist.module.css'
+import {TaskType} from "../App"
+import {DeleteTwoTone} from "@ant-design/icons"
 
-const Todolist = () => {
+type PropsType = {
+    name: string
+    tasks: TaskType[]
+    deleteTask: (taskId: string) => void
+}
+
+const Todolist = (props: PropsType) => {
 
     return (
         <div>
-            <h3>What to learn</h3>
+            <h3>{props.name}</h3>
             <div className={s.taskInput}>
-                <Input placeholder='Add new task'/>
+                <Input placeholder='Add new item'/>
                 <Button type='primary' shape="round">+</Button>
             </div>
-            <ul>
-                <li><Checkbox checked={true}/><span>HTML&CSS</span></li>
-                <li><Checkbox checked={true}/><span>JS</span></li>
-                <li><Checkbox checked={false}/><span>React</span></li>
-            </ul>
+            {props.tasks.map(t =>
+                <ul key={t.id}>
+                    <li><Checkbox checked={t.isDone}/><span>{t.task} <DeleteTwoTone
+                        onClick={() => props.deleteTask(t.id)}/></span></li>
+                </ul>
+            )}
             <div>
-               <ButtonGroup/>
+                <ButtonGroup/>
             </div>
         </div>
     )
