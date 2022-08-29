@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import s from './App.module.css'
 import Todolist from "./components/Todolist"
 import {v1} from "uuid"
+import AppInput from "./components/common/AppInput/AppInput";
 
 export type TaskType = {
     id: string
@@ -15,6 +16,8 @@ type TodolistType = {
     filter: FilterType
 }
 
+type TaskStateType = { [key: string]: TaskType[] }
+
 export type FilterType = 'all' | 'active' | 'completed'
 
 function App() {
@@ -27,7 +30,7 @@ function App() {
         {id: todolistId2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState({
+    let [tasks, setTasks] = useState<TaskStateType>({
         [todolistId1]: [
             {id: v1(), task: 'HTML & CSS', isDone: true},
             {id: v1(), task: 'Javascript', isDone: true},
@@ -76,41 +79,65 @@ function App() {
         setTasks({...tasks})
     }
 
-    return (
-        <div className={s.img}>
-            <div className={s.element}>
-                {
-                    todolists.map(tl => {
+    function changeTodolistTitle(id: string, newTitle: string) {
+        const todolist = todolists.find(tl => tl.id === id)
+        if (todolist) {
+            todolist.title = newTitle
+            setTodolists([...todolists])
+        }
+    }
 
-                            let allTodolistsTasks = tasks[tl.id]
-                            let tasksForTodolist = allTodolistsTasks
+    function addTodolist(title: string) {
+        let todolist: TodolistType = {id: v1(), title, filter: 'all'}
+        setTodolists([todolist, ...todolists])
+        setTasks({...tasks, [todolist.id]: []})
+    }
 
-                            if (tl.filter === 'active') {
-                                tasksForTodolist = allTodolistsTasks.filter(t => !t.isDone)
-                            }
-                            if (tl.filter === 'completed') {
-                                tasksForTodolist = allTodolistsTasks.filter(t => t.isDone)
-                            }
+    function changeTaskTitle(taskId: string, newTitle: string, todolistId: string) {
+        let todolistsTasks = tasks[todolistId]
+        let task = todolistsTasks.find(t => t.id === taskId)
+        if (task) {
+            task.task = newTitle
+            setTasks({...tasks})
+        }
+    }
 
-                            return <div className={s.todo}>
-                                <Todolist key={tl.id}
-                                          name={tl.title}
-                                          tasks={tasksForTodolist}
-                                          deleteTask={deleteTask}
-                                          changeFilter={changeFilter}
-                                          addTask={addTask}
-                                          changeStatus={changeStatus}
-                                          filter={tl.filter}
-                                          id={tl.id}
-                                          removeTodolist={removeTodolist}
-                                />
-                            </div>
+    return <div className={s.img}>
+        <div className={s.element}>
+            <AppInput addItem={addTodolist}/>
+            {
+                todolists.map(tl => {
+
+                        let allTodolistsTasks = tasks[tl.id]
+                        let tasksForTodolist = allTodolistsTasks
+
+                        if (tl.filter === 'active') {
+                            tasksForTodolist = allTodolistsTasks.filter(t => !t.isDone)
                         }
-                    )
-                }
-            </div>
+                        if (tl.filter === 'completed') {
+                            tasksForTodolist = allTodolistsTasks.filter(t => t.isDone)
+                        }
+
+                        return <div className={s.todo}>
+                            <Todolist key={tl.id}
+                                      name={tl.title}
+                                      tasks={tasksForTodolist}
+                                      deleteTask={deleteTask}
+                                      changeFilter={changeFilter}
+                                      addTask={addTask}
+                                      changeStatus={changeStatus}
+                                      filter={tl.filter}
+                                      id={tl.id}
+                                      removeTodolist={removeTodolist}
+                                      changeTaskTitle={changeTaskTitle}
+                                      changeTodolistTitle={changeTodolistTitle}
+                            />
+                        </div>
+                    }
+                )
+            }
         </div>
-    )
+    </div>
 }
 
 export default App

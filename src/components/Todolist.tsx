@@ -1,11 +1,13 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react'
 import {Button, Checkbox, Input} from "antd"
 import 'antd/dist/antd.css'
-import {ButtonGroup} from "./common/ButtonGroup"
+import {ButtonGroup} from "./common/ButtonGroup/ButtonGroup"
 import s from './Todolist.module.css'
 import {FilterType, TaskType} from "../App"
 import {DeleteTwoTone} from "@ant-design/icons"
 import {CheckboxChangeEvent} from "antd/es/checkbox"
+import AppInput from "./common/AppInput/AppInput";
+import EditableSpan from "./common/EditableSpan/EditableSpan";
 
 type PropsType = {
     name: string
@@ -17,55 +19,34 @@ type PropsType = {
     filter: FilterType
     id: string
     removeTodolist: (id: string) => void
+    changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void
+    changeTodolistTitle: (id: string, newTitle: string) => void
 }
 
 const Todolist = (props: PropsType) => {
 
-    let [title, setTitle] = useState('')
-    let [error, setError] = useState<null | string>(null)
-
-    const addTask = () => {
-        if (title.trim() !== '') {
-            props.addTask(title.trim(), props.id)
-            setTitle('')
-        } else {
-            setError('Title is required')
-        }
-    }
-
-    const changeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.currentTarget.value)
-    }
-
-    const addTaskEnter = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
-        if (event.key === 'Enter') {
-            addTask()
-        }
-    }
-
     const removeTodolist = () => props.removeTodolist(props.id)
+    const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(props.id, newTitle)
+
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
+    }
 
     return <div>
         <div className={s.title}>
-            <h3>{props.name}</h3>
-            <DeleteTwoTone onClick={removeTodolist} className={s.button}/>
+            <h3><EditableSpan task={props.name} onChange={changeTodolistTitle} />{}
+                <DeleteTwoTone onClick={removeTodolist} className={s.button}/>
+            </h3>
         </div>
-        <div className={s.taskInput}>
-            <Input value={title}
-                   placeholder='Add new item'
-                   onChange={changeTitle}
-                   onKeyPress={addTaskEnter}
-                   className={error ? s.error : ''}
-            />
-            <Button type='primary' shape="round" onClick={addTask}>+</Button>
-            {error && <div className={s.errorMessage}>{error}</div>}
-        </div>
+        <AppInput addItem={addTask}/>
         {props.tasks.map((t) => {
 
             const deleteTask = () => props.deleteTask(t.id, props.id)
             const changeStatus = (e: CheckboxChangeEvent) => {
                 props.changeStatus(t.id, e.target.checked, props.id)
+            }
+            const changeTask = (newValue: string) => {
+                props.changeTaskTitle(t.id, newValue, props.id)
             }
 
             return <div className={t.isDone ? s.isDone : ''}>
@@ -73,7 +54,9 @@ const Todolist = (props: PropsType) => {
                     <Checkbox checked={t.isDone}
                               onChange={changeStatus}
                     />
-                    <span className={s.span}>{t.task} <DeleteTwoTone onClick={deleteTask}/></span>
+                    <span className={s.span}>
+                        <EditableSpan task={t.task} onChange={changeTask}/>
+                        <DeleteTwoTone onClick={deleteTask}/></span>
                 </li>
             </div>
         })}

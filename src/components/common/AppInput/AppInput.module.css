@@ -1,0 +1,12 @@
+.taskInput {
+    display: flex;
+    align-content: space-between;
+}
+
+.error {
+    border: red 1px solid;
+}
+
+.error-message {
+    color: red;
+}

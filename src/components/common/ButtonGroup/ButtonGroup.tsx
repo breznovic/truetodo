@@ -1,6 +1,6 @@
 import React from "react"
 import {Button} from "antd"
-import {FilterType} from "../../App"
+import {FilterType} from "../../../App"
 
 type PropsType = {
     changeFilter: (value: FilterType, todolistId: string) => void

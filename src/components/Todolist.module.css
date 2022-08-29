@@ -1,22 +1,9 @@
-.taskInput {
-    display: flex;
-    align-content: space-between;
-}
-
 .li {
     list-style-type: none;
 }
 
 .span {
     padding-left: 10px;
-}
-
-.error {
-    border: red 1px solid;
-}
-
-.error-message {
-    color: red;
 }
 
 .isDone {
