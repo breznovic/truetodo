@@ -22,3 +22,13 @@
 .isDone {
     opacity: 0.5;
 }
+
+.title {
+    display: flex;
+    align-content: space-around;
+    align-items: center;
+}
+
+.button {
+    padding-left: 10px;
+}
