@@ -1,16 +1,19 @@
 import React from "react"
 import {Button} from "antd"
 import {FilterType} from "../../App"
+import s from './ButtonGroup.module.css'
 
 type PropsType = {
-    changeFilter: (value: FilterType) => void
+    changeFilter: (value: FilterType, todolistId: string) => void
+    id: string
+    filter: FilterType
 }
 
 export const ButtonGroup: (props: PropsType) => JSX.Element = (props: PropsType) => {
 
-    const allFilter = () => props.changeFilter('all')
-    const activeFilter = () => props.changeFilter('active')
-    const completedFilter = () => props.changeFilter('completed')
+    const allFilter = () => props.changeFilter('all', props.id)
+    const activeFilter = () => props.changeFilter('active', props.id)
+    const completedFilter = () => props.changeFilter('completed', props.id)
 
     return <div>
         <Button onClick={allFilter}>All</Button>
