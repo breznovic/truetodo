@@ -104,7 +104,7 @@ function App() {
 
     return <div className={s.img}>
         <div className={s.element}>
-            <AppInput addItem={addTodolist}/>
+            <div className={s.input}><AppInput addItem={addTodolist}/></div>
             {
                 todolists.map(tl => {
 
