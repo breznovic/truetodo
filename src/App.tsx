@@ -16,7 +16,7 @@ export type TodolistType = {
     filter: FilterType
 }
 
-type TaskStateType = { [key: string]: TaskType[] }
+export type TaskStateType = { [key: string]: TaskType[] }
 
 export type FilterType = 'all' | 'active' | 'completed'
 
@@ -43,11 +43,12 @@ function App() {
         ],
     })
 
-    function changeFilter(value: FilterType, todolistId: string) {
-        let todolist = todolists.find(tl => tl.id === todolistId)
-        if (todolist) {
-            todolist.filter = value
-            setTodolists([...todolists])
+    function changeTaskTitle(taskId: string, newTitle: string, todolistId: string) {
+        let todolistsTasks = tasks[todolistId]
+        let task = todolistsTasks.find(t => t.id === taskId)
+        if (task) {
+            task.task = newTitle
+            setTasks({...tasks})
         }
     }
 
@@ -93,12 +94,11 @@ function App() {
         setTasks({...tasks, [todolist.id]: []})
     }
 
-    function changeTaskTitle(taskId: string, newTitle: string, todolistId: string) {
-        let todolistsTasks = tasks[todolistId]
-        let task = todolistsTasks.find(t => t.id === taskId)
-        if (task) {
-            task.task = newTitle
-            setTasks({...tasks})
+    function changeFilter(value: FilterType, todolistId: string) {
+        let todolist = todolists.find(tl => tl.id === todolistId)
+        if (todolist) {
+            todolist.filter = value
+            setTodolists([...todolists])
         }
     }
 
