@@ -1,52 +1,65 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react'
-import {Button, Checkbox, Input} from "antd"
+import React from 'react'
+import {Checkbox} from "antd"
 import 'antd/dist/antd.css'
 import {ButtonGroup} from "./common/ButtonGroup/ButtonGroup"
 import s from './Todolist.module.css'
 import {FilterType, TaskType} from "../App"
 import {DeleteTwoTone} from "@ant-design/icons"
 import {CheckboxChangeEvent} from "antd/es/checkbox"
-import AppInput from "./common/AppInput/AppInput";
-import EditableSpan from "./common/EditableSpan/EditableSpan";
+import AppInput from "./common/AppInput/AppInput"
+import EditableSpan from "./common/EditableSpan/EditableSpan"
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, deleteTaskAC} from "../state/reducers/tasksReducer"
+import {useDispatch, useSelector} from "react-redux"
+import {AppRootState} from "../state/store"
 
 type PropsType = {
     name: string
-    tasks: TaskType[]
-    deleteTask: (taskId: string, todolistId: string) => void
     changeFilter: (value: FilterType, todolistId: string) => void
-    addTask: (task: string, todolistId: string) => void
-    changeStatus: (taskId: string, isDone: boolean, todolistId: string) => void
     filter: FilterType
     id: string
     removeTodolist: (id: string) => void
-    changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void
     changeTodolistTitle: (id: string, newTitle: string) => void
 }
 
 const Todolist = (props: PropsType) => {
 
+    const dispatch = useDispatch()
+    const tasks = useSelector<AppRootState, TaskType[]>((state) => state.tasks[props.id])
+
     const removeTodolist = () => props.removeTodolist(props.id)
     const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(props.id, newTitle)
 
-    const addTask = (title: string) => {
-        props.addTask(title, props.id)
+    const addNewTask = (title: string) => {
+        dispatch(addTaskAC(title, todolistId))
+    }
+
+    function deleteTask(taskId: string, todolistId: string) {
+        dispatch(deleteTaskAC(taskId, todolistId))
+    }
+
+    function changeTaskStatus(taskId: string, isDone: boolean, todolistId: string) {
+        dispatch(changeTaskStatusAC(taskId, todolistId, isDone))
+    }
+
+    function changeTaskTitle(taskId: string, newTitle: string, todolistId: string) {
+        dispatch(changeTaskTitleAC(taskId, newTitle, todolistId))
     }
 
     return <div>
         <div className={s.title}>
-            <h3><EditableSpan task={props.name} onChange={changeTodolistTitle} />{}
+            <h3><EditableSpan task={props.name} onChange={changeTodolistTitle}/>{}
                 <DeleteTwoTone onClick={removeTodolist} className={s.button}/>
             </h3>
         </div>
-        <AppInput addItem={addTask}/>
-        {props.tasks.map((t) => {
+        <AppInput addItem={addNewTask}/>
+        {tasks.map((t) => {
 
-            const deleteTask = () => props.deleteTask(t.id, props.id)
+            const deleteTDTask = () => deleteTask(taskId, todolistId)
             const changeStatus = (e: CheckboxChangeEvent) => {
-                props.changeStatus(t.id, e.target.checked, props.id)
+                changeTaskStatus(t.id, e.target.checked, props.id)
             }
             const changeTask = (newValue: string) => {
-                props.changeTaskTitle(t.id, newValue, props.id)
+                changeTaskTitle(t.id, newValue, props.id)
             }
 
             return <div className={t.isDone ? s.isDone : ''}>
@@ -56,7 +69,7 @@ const Todolist = (props: PropsType) => {
                     />
                     <span className={s.span}>
                         <EditableSpan task={t.task} onChange={changeTask}/>
-                        <DeleteTwoTone onClick={deleteTask}/></span>
+                        <DeleteTwoTone onClick={deleteTDTask}/></span>
                 </li>
             </div>
         })}

@@ -29,7 +29,6 @@ export type ChangeTaskTitleType = {
     newTitle: string
 }
 
-
 type ActionsType = DeleteTaskType |
     AddTaskType |
     ChangeTaskTitleType |
@@ -37,7 +36,9 @@ type ActionsType = DeleteTaskType |
     AddTodolistType |
     RemoveTodolistType
 
-export const tasksReducer = (state: TaskStateType, action: ActionsType): TaskStateType => {
+const initialState: TaskStateType = {}
+
+export const tasksReducer = (state: TaskStateType = initialState, action: ActionsType): TaskStateType => {
     switch (action.type) {
         case 'DELETE-TASK': {
             const stateCopy = {...state}
@@ -83,22 +84,22 @@ export const tasksReducer = (state: TaskStateType, action: ActionsType): TaskSta
             return stateCopy
         }
         default:
-            throw new Error('Unknown action type')
+            return state
     }
 }
 
-export const deleteTask = (taskId: string, todolistId: string): DeleteTaskType => {
+export const deleteTaskAC = (taskId: string, todolistId: string): DeleteTaskType => {
     return {type: "DELETE-TASK", taskId, todolistId}
 }
 
-export const addTask = (task: string, todolistId: string): AddTaskType => {
+export const addTaskAC = (task: string, todolistId: string): AddTaskType => {
     return {type: "ADD-TASK", task, todolistId}
 }
 
-export const changeTaskStatus = (taskId: string, todolistId: string, isDone: boolean): ChangeTaskStatusType => {
+export const changeTaskStatusAC = (taskId: string, todolistId: string, isDone: boolean): ChangeTaskStatusType => {
     return {type: 'CHANGE-TASK-STATUS', taskId, todolistId, isDone}
 }
 
-export const changeTaskTitle = (taskId: string, todolistId: string, newTitle: string): ChangeTaskTitleType => {
+export const changeTaskTitleAC = (taskId: string, todolistId: string, newTitle: string): ChangeTaskTitleType => {
     return {type: 'CHANGE-TASK-TITLE', taskId, todolistId, newTitle}
 }
