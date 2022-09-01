@@ -32,7 +32,6 @@ function App() {
 
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootState, TodolistType[]>((state) => state.todolists)
-    const tasks = useSelector<AppRootState, TaskStateType>((state) => state.tasks)
 
     function removeTodolist(id: string) {
         dispatch(removeTodolistAC(id))
@@ -55,16 +54,6 @@ function App() {
             <div className={s.input}><AppInput addItem={addTodolist}/></div>
             {
                 todolists.map(tl => {
-
-                        let allTodolistsTasks = tasks[tl.id]
-                        let tasksForTodolist = allTodolistsTasks
-
-                        if (tl.filter === 'active') {
-                            tasksForTodolist = allTodolistsTasks.filter(t => !t.isDone)
-                        }
-                        if (tl.filter === 'completed') {
-                            tasksForTodolist = allTodolistsTasks.filter(t => t.isDone)
-                        }
 
                         return <div className={s.todo}>
                             <Todolist key={tl.id}

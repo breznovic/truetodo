@@ -24,25 +24,21 @@ type PropsType = {
 const Todolist = (props: PropsType) => {
 
     const dispatch = useDispatch()
+
     const tasks = useSelector<AppRootState, TaskType[]>((state) => state.tasks[props.id])
 
     const removeTodolist = () => props.removeTodolist(props.id)
+
     const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(props.id, newTitle)
 
-    const addNewTask = (title: string) => {
-        dispatch(addTaskAC(title, todolistId))
-    }
+    let allTodolistsTasks = tasks
+    let tasksForTodolist = allTodolistsTasks
 
-    function deleteTask(taskId: string, todolistId: string) {
-        dispatch(deleteTaskAC(taskId, todolistId))
+    if (props.filter === 'active') {
+        tasksForTodolist = allTodolistsTasks.filter(t => !t.isDone)
     }
-
-    function changeTaskStatus(taskId: string, isDone: boolean, todolistId: string) {
-        dispatch(changeTaskStatusAC(taskId, todolistId, isDone))
-    }
-
-    function changeTaskTitle(taskId: string, newTitle: string, todolistId: string) {
-        dispatch(changeTaskTitleAC(taskId, newTitle, todolistId))
+    if (props.filter === 'completed') {
+        tasksForTodolist = allTodolistsTasks.filter(t => t.isDone)
     }
 
     return <div>
@@ -51,15 +47,20 @@ const Todolist = (props: PropsType) => {
                 <DeleteTwoTone onClick={removeTodolist} className={s.button}/>
             </h3>
         </div>
-        <AppInput addItem={addNewTask}/>
-        {tasks.map((t) => {
+        <AppInput addItem={(title) => {
+            dispatch(addTaskAC(title, props.id))
+        }}/>
+        {tasksForTodolist.map((t) => {
 
-            const deleteTDTask = () => deleteTask(taskId, todolistId)
+            const deleteTDTask = () => dispatch(deleteTaskAC(t.id, props.id))
+
             const changeStatus = (e: CheckboxChangeEvent) => {
-                changeTaskStatus(t.id, e.target.checked, props.id)
+                let targetCheck = e.target.checked
+                dispatch(changeTaskStatusAC(t.id, props.id, targetCheck))
             }
+
             const changeTask = (newValue: string) => {
-                changeTaskTitle(t.id, newValue, props.id)
+                dispatch(changeTaskTitleAC(t.id, newValue, props.id))
             }
 
             return <div className={t.isDone ? s.isDone : ''}>
