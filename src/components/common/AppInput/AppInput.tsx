@@ -6,7 +6,7 @@ type PropsType = {
     addItem: (title: string) => void
 }
 
-const AppInput = (props: PropsType) => {
+export const AppInput = React.memo((props: PropsType) => {
 
     let [error, setError] = useState<null | string>(null)
     let [title, setTitle] = useState('')
@@ -16,7 +16,9 @@ const AppInput = (props: PropsType) => {
     }
 
     const addTaskEnter = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error !== null) {
+            setError(null)
+        }
         if (event.key === 'Enter') {
             addTask()
         }
@@ -41,6 +43,6 @@ const AppInput = (props: PropsType) => {
         <Button type='primary' shape="round" onClick={addTask}>+</Button>
         {error && <div className={s.errorMessage}>{error}</div>}
     </div>
-}
+})
 
-export default AppInput
+

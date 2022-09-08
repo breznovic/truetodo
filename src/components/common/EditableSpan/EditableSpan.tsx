@@ -2,18 +2,18 @@ import React, {ChangeEvent, useState} from 'react'
 import {Input} from "antd"
 
 type PropsType = {
-    task: string
+    title: string
     onChange: (newValue: string) => void
 }
 
-const EditableSpan = (props: PropsType) => {
+export const EditableSpan = React.memo((props: PropsType) => {
 
     const [edit, setEdit] = useState(false)
     const [editTask, setEditTask] = useState('')
 
     const activateEditMode = () => {
         setEdit(true)
-        setEditTask(props.task)
+        setEditTask(props.title)
     }
 
     const activateViewMode = () => {
@@ -24,7 +24,6 @@ const EditableSpan = (props: PropsType) => {
     const changeTask = (e: ChangeEvent<HTMLInputElement>) => setEditTask(e.target.value)
 
     return edit ? <Input value={editTask} onBlur={activateViewMode} autoFocus onChange={changeTask}/> :
-        <span onDoubleClick={activateEditMode}>{props.task}</span>
-}
+        <span onDoubleClick={activateEditMode}>{props.title}</span>
+})
 
-export default EditableSpan

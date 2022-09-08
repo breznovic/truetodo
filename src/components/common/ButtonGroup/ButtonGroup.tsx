@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useCallback} from "react"
 import {Button} from "antd"
 import {FilterType} from "../../../App"
 
@@ -10,9 +10,9 @@ type PropsType = {
 
 export const ButtonGroup: (props: PropsType) => JSX.Element = (props: PropsType) => {
 
-    const allFilter = () => props.changeFilter('all', props.id)
-    const activeFilter = () => props.changeFilter('active', props.id)
-    const completedFilter = () => props.changeFilter('completed', props.id)
+    const allFilter = useCallback(() => props.changeFilter('all', props.id), [props.changeFilter, props.id])
+    const activeFilter = useCallback(() => props.changeFilter('active', props.id), [props.changeFilter, props.id])
+    const completedFilter = useCallback(() => props.changeFilter('completed', props.id), [props.changeFilter, props.id])
 
     return <div>
         <Button onClick={allFilter}>All</Button>
