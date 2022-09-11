@@ -9,7 +9,7 @@ import {EditableSpan} from "./common/EditableSpan/EditableSpan"
 import {addTaskAC} from "../state/reducers/tasksReducer"
 import {useDispatch, useSelector} from "react-redux"
 import {AppRootState} from "../state/store"
-import {Task} from "./common/Task/Task";
+import {Task} from "./common/Task/Task"
 
 type PropsType = {
     name: string
