@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import axios from 'axios'
 
 export type TodolistType = {
@@ -73,6 +73,9 @@ export const todolistAPI = {
     },
     deleteTask(todolistId: string, taskId: string) {
         return instance.delete<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`)
+    },
+    createTask(todolistId: string, taskTitle: string) {
+        return instance.post<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks`, {title: taskTitle})
     },
 }
 
