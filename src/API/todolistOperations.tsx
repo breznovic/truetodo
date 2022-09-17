@@ -98,3 +98,25 @@ export const CreateTask = () => {
 
     return <div>{JSON.stringify(state)}</div>
 }
+
+export const UpdateTask = () => {
+    const [state, setState] = useState<any>(null)
+
+    useEffect(() => {
+        const todolistId = '' // Not correct
+        const taskId = '' // Not correct
+        todolistAPI.updateTask(todolistId, taskId< {
+            deadline: '',
+            description: '',
+            priority: 0,
+            startDate: '',
+            status: '',
+            title: ''
+        })
+            .then((res) => {
+                setState(res.data)
+            })
+    }, [])
+
+    return <div>{JSON.stringify(state)}</div>
+}
