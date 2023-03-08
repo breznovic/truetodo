@@ -1,0 +1,10 @@
+.li {
+  list-style-type: none;
+}
+
+.box {
+    border: 1px solid black;
+    width: 16%;
+    margin: 1%;
+    padding: 1% 1% 1% 2%;
+}
