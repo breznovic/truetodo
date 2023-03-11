@@ -8,3 +8,9 @@
     margin: 1%;
     padding: 1% 1% 1% 2%;
 }
+
+.button {
+    width: 33%;
+    padding: 0% 3% 0% 1%;
+    text-align: center;
+}

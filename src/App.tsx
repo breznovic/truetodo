@@ -1,12 +1,18 @@
 import s from "./App.module.css";
-import Todolist from "./components/Todolist";
+import Todolist, { TodolistType } from "./components/Todolist";
+
+const todolists = [
+  { id: 1, title: "Work", isDone: false },
+  { id: 1, title: "Sleep", isDone: false },
+  { id: 1, title: "Code", isDone: false },
+];
 
 function App() {
   return (
     <div className={s.flexbox}>
-      <Todolist />
-      <Todolist />
-      <Todolist />
+      <Todolist todolists={todolists}/>
+      <Todolist todolists={todolists}/>
+      <Todolist todolists={todolists}/>
     </div>
   );
 }
