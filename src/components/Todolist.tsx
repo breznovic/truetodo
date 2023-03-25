@@ -1,12 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
+import { removeTask, TaskType } from "../slices/tasksSlice";
+import { RootState } from "../store/store";
 import s from "./Todolist.module.css";
 
-export type TodolistType = {
-  id: number;
-  title: string;
-  isDone: boolean;
-};
+const Todolist = () => {
+  let tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const dispatch = useDispatch();
 
-const Todolist = (props: TodolistType) => {
   return (
     <div className={s.box}>
       <h3>What to do</h3>
@@ -16,21 +16,19 @@ const Todolist = (props: TodolistType) => {
       </div>
       <div>
         <ul>
-          <li className={s.li}>
-            <input type="checkbox"/>
-            <span>{props.title}</span>
-            <button>-</button>
-          </li>
-          <li className={s.li}>
-            <input type="checkbox" />
-            <span>Sleep</span>
-            <button>-</button>
-          </li>
-          <li className={s.li}>
-            <input type="checkbox" />
-            <span>Code</span>
-            <button>-</button>
-          </li>
+          {tasks.map((t: TaskType) => {
+            const deleteTask = (taskId: string) => {
+              dispatch(removeTask(taskId));
+            };
+
+            return (
+              <li className={s.li} key={t.id}>
+                <input type="checkbox" checked={t.isDone} />
+                <span>{t.title}</span>
+                <button onClick={() => deleteTask(t.id)}>-</button>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div>
