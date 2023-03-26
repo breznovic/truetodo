@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTask, TaskType } from "../slices/tasksSlice";
-import { RootState } from "../store/store";
+import { removeTask } from "../../slices/tasksSlice";
+import { RootState } from "../../store/store";
+import { TaskType } from "../../utils/types/types";
+import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
 
 const Todolist = () => {
+  const filterValue = useSelector(
+    (state: RootState) => state.filter.filterValue
+  );
   let tasks = useSelector((state: RootState) => state.tasks.tasks);
+
+  const [filteredTask, setFilteredTask] = useState(tasks);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (filterValue === 0) {
+      setFilteredTask(tasks);
+    }
+    if (filterValue === 1) {
+      setFilteredTask(tasks.filter((t) => t.isDone === false));
+    }
+    if (filterValue === 2) {
+      setFilteredTask(tasks.filter((t) => t.isDone === true));
+    }
+  }, [filterValue]);
 
   return (
     <div className={s.box}>
@@ -16,7 +37,7 @@ const Todolist = () => {
       </div>
       <div>
         <ul>
-          {tasks.map((t: TaskType) => {
+          {filteredTask.map((t: TaskType) => {
             const deleteTask = (taskId: string) => {
               dispatch(removeTask(taskId));
             };
@@ -32,9 +53,7 @@ const Todolist = () => {
         </ul>
       </div>
       <div>
-        <button className={s.button}>All</button>
-        <button className={s.button}>Active</button>
-        <button className={s.button}>Completed</button>
+        <Filter />
       </div>
     </div>
   );
