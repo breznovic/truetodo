@@ -1,20 +1,40 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTask } from "../../slices/tasksSlice";
+import { addNewTask, removeTask } from "../../slices/tasksSlice";
 import { RootState } from "../../store/store";
 import { TaskType } from "../../utils/types/types";
 import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
 
-const Todolist = () => {
+type PropsType = {
+  todoTitle: string;
+};
+
+const Todolist = (props: PropsType) => {
   const filterValue = useSelector(
     (state: RootState) => state.filter.filterValue
   );
   let tasks = useSelector((state: RootState) => state.tasks.tasks);
 
+  const dispatch = useDispatch();
+
   const [filteredTask, setFilteredTask] = useState(tasks);
 
-  const dispatch = useDispatch();
+  const [newTask, setNewTask] = useState("");
+
+  const onSubmit = () => {
+    if (newTask.trim().length === 0) {
+      alert("Enter a task before adding");
+      setNewTask("");
+      return;
+    }
+    dispatch(
+      addNewTask({
+        newTaskText: newTask,
+      })
+    );
+    setNewTask("");
+  };
 
   useEffect(() => {
     if (filterValue === 0) {
@@ -30,22 +50,31 @@ const Todolist = () => {
 
   return (
     <div className={s.box}>
-      <h3>What to do</h3>
+      <h3>{props.todoTitle}</h3>
       <div>
-        <input type="text" />
-        <button>+</button>
+        <input
+          type="text"
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setNewTask(e.target.value)
+          }
+        />
+        <button onClick={onSubmit}>+</button>
       </div>
       <div>
         <ul>
           {filteredTask.map((t: TaskType) => {
             const deleteTask = (taskId: string) => {
               dispatch(removeTask(taskId));
+              setFilteredTask(tasks);
             };
-
             return (
               <li className={s.li} key={t.id}>
                 <input type="checkbox" checked={t.isDone} />
-                <span>{t.title}</span>
+                {t.isDone === false ? (
+                  <span>{t.title} </span>
+                ) : (
+                  <span className={s.taskIsDone}>{t.title} </span>
+                )}
                 <button onClick={() => deleteTask(t.id)}>-</button>
               </li>
             );

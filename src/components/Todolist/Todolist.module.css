@@ -3,14 +3,18 @@
 }
 
 .box {
-    border: 1px solid black;
-    width: 16%;
-    margin: 1%;
-    padding: 1% 1% 1% 2%;
+  border: 1px solid black;
+  width: 16%;
+  margin: 1%;
+  padding: 1% 1% 1% 2%;
 }
 
 .button {
-    width: 33%;
-    padding: 0% 3% 0% 1%;
-    text-align: center;
+  width: 33%;
+  padding: 0% 3% 0% 1%;
+  text-align: center;
+}
+
+.taskIsDone {
+  text-decoration: line-through;
 }
