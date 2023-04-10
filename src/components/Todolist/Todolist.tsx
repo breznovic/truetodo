@@ -2,9 +2,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewTask, removeTask } from "../../slices/tasksSlice";
 import { RootState } from "../../store/store";
-import { TaskType } from "../../utils/types/types";
 import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
+import { log } from "console";
 
 type PropsType = {
   todoTitle: string;
@@ -15,7 +15,7 @@ const Todolist = (props: PropsType) => {
     (state: RootState) => state.filter.filterValue
   );
   let tasks = useSelector((state: RootState) => state.tasks.tasks);
-
+  console.log(tasks);
   const dispatch = useDispatch();
 
   const [filteredTask, setFilteredTask] = useState(tasks);
@@ -46,7 +46,7 @@ const Todolist = (props: PropsType) => {
     if (filterValue === 2) {
       setFilteredTask(tasks.filter((t) => t.isDone === true));
     }
-  }, [filterValue]);
+  }, [filterValue, tasks]);
 
   return (
     <div className={s.box}>
@@ -62,10 +62,9 @@ const Todolist = (props: PropsType) => {
       </div>
       <div>
         <ul>
-          {filteredTask.map((t: TaskType) => {
+          {filteredTask.map((t) => {
             const deleteTask = (taskId: string) => {
               dispatch(removeTask(taskId));
-              setFilteredTask(tasks);
             };
             return (
               <li className={s.li} key={t.id}>

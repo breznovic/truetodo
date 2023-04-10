@@ -22,8 +22,10 @@ export const tasksSlice = createSlice({
       state.tasks.unshift(newTask);
     },
     removeTask: (state, action: PayloadAction<string>) => {
+    
       const newTasksArray = state.tasks.filter((t) => t.id !== action.payload);
       state.tasks = newTasksArray;
+      return state
     },
   },
 });
