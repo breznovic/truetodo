@@ -4,7 +4,6 @@ import { addNewTask, removeTask } from "../../slices/tasksSlice";
 import { RootState } from "../../store/store";
 import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
-import { log } from "console";
 
 type PropsType = {
   todoTitle: string;
@@ -25,15 +24,14 @@ const Todolist = (props: PropsType) => {
   const onSubmit = () => {
     if (newTask.trim().length === 0) {
       alert("Enter a task before adding");
-      setNewTask("");
-      return;
+      return setNewTask("");
     }
     dispatch(
       addNewTask({
         newTaskText: newTask,
       })
     );
-    setNewTask("");
+    return setNewTask("");
   };
 
   useEffect(() => {
@@ -57,6 +55,11 @@ const Todolist = (props: PropsType) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setNewTask(e.target.value)
           }
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              onSubmit();
+            }
+          }}
         />
         <button onClick={onSubmit}>+</button>
       </div>
