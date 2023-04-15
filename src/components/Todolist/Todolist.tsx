@@ -14,7 +14,7 @@ const Todolist = (props: PropsType) => {
     (state: RootState) => state.filter.filterValue
   );
   let tasks = useSelector((state: RootState) => state.tasks.tasks);
-  console.log(tasks);
+
   const dispatch = useDispatch();
 
   const [filteredTask, setFilteredTask] = useState(tasks);
