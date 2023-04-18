@@ -51,6 +51,7 @@ const Todolist = (props: PropsType) => {
       <h3>{props.todoTitle}</h3>
       <div>
         <input
+          value={newTask}
           type="text"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setNewTask(e.target.value)
