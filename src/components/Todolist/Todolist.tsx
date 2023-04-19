@@ -1,6 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask, removeTask } from "../../slices/tasksSlice";
+import {
+  addNewTask,
+  changeTaskStatus,
+  removeTask,
+} from "../../slices/tasksSlice";
 import { RootState } from "../../store/store";
 import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
@@ -70,9 +74,19 @@ const Todolist = (props: PropsType) => {
             const deleteTask = (taskId: string) => {
               dispatch(removeTask(taskId));
             };
+
+            const TaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+              let newTaskStatus = e.currentTarget.checked;
+              dispatch(changeTaskStatus(taskId, newTaskStatus));
+            };
+
             return (
               <li className={s.li} key={t.id}>
-                <input type="checkbox" checked={t.isDone} />
+                <input
+                  type="checkbox"
+                  checked={t.isDone}
+                  onChange={TaskStatusHandler}
+                />
                 {t.isDone === false ? (
                   <span>{t.title} </span>
                 ) : (

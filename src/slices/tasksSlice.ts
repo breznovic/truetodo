@@ -22,14 +22,23 @@ export const tasksSlice = createSlice({
       state.tasks.unshift(newTask);
     },
     removeTask: (state, action: PayloadAction<string>) => {
-    
       const newTasksArray = state.tasks.filter((t) => t.id !== action.payload);
       state.tasks = newTasksArray;
-      return state
+      return state;
+    },
+    changeTaskStatus: (
+      state,
+      action: PayloadAction<{ taskId: string; isDone: boolean }>
+    ) => {
+      let task = state.tasks.find((t) => t.id === action.payload.taskId);
+      if (task) {
+        task.isDone = action.payload.isDone;
+        return state;
+      }
     },
   },
 });
 
-export const { removeTask, addNewTask } = tasksSlice.actions;
+export const { removeTask, addNewTask, changeTaskStatus } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
