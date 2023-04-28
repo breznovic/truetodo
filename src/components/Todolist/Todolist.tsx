@@ -25,8 +25,6 @@ const Todolist = (props: PropsType) => {
 
   const [newTask, setNewTask] = useState("");
 
-  const [status, setNewStatus] = useState<boolean>(false);
-
   const onSubmit = () => {
     if (newTask.trim().length === 0) {
       alert("Enter a task before adding");
@@ -80,7 +78,6 @@ const Todolist = (props: PropsType) => {
             const TaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
               let newTaskStatus = e.currentTarget.checked;
               dispatch(changeTaskStatus(taskId, newTaskStatus));
-              setNewStatus(newTaskStatus);
             };
 
             return (
