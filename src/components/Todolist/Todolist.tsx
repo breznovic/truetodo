@@ -77,7 +77,7 @@ const Todolist = (props: PropsType) => {
 
             const TaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
               let newTaskStatus = e.currentTarget.checked;
-              dispatch(changeTaskStatus(taskId, newTaskStatus));
+              dispatch(changeTaskStatus());
             };
 
             return (
