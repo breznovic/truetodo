@@ -28,12 +28,11 @@ export const tasksSlice = createSlice({
     },
     changeTaskStatus: (
       state,
-      action: PayloadAction<{ taskId: string; isDone: boolean}>
+      action: PayloadAction<{ taskId: string; isDone: boolean }>
     ) => {
       let task = state.tasks.find((t) => t.id === action.payload.taskId);
       if (task) {
         task.isDone = action.payload.isDone;
-        return state;
       }
     },
   },
