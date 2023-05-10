@@ -25,10 +25,14 @@ const Todolist = (props: PropsType) => {
 
   const [newTask, setNewTask] = useState("");
 
+  const [error, setError] = useState<string | null>(null);
+
   const onSubmit = () => {
     if (newTask.trim().length === 0) {
       alert("Enter a task before adding");
       return setNewTask("");
+    } else {
+      setError("Enter a task");
     }
     dispatch(
       addNewTask({
@@ -57,6 +61,7 @@ const Todolist = (props: PropsType) => {
         <input
           value={newTask}
           type="text"
+          className={error ? "error" : ""}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setNewTask(e.target.value)
           }

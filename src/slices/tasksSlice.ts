@@ -6,12 +6,7 @@ const initialState: TasksType = {
     { id: nanoid(8), title: "Work", isDone: true },
     { id: nanoid(8), title: "Sleep", isDone: false },
     { id: nanoid(8), title: "Code", isDone: false },
-  ],
-  tasks2: [
-    { id: nanoid(8), title: "Bread", isDone: true },
-    { id: nanoid(8), title: "Cheese", isDone: false },
-    { id: nanoid(8), title: "Milk", isDone: false },
-  ],
+  ]
 };
 
 export const tasksSlice = createSlice({
