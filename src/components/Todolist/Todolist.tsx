@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewTask,
@@ -8,15 +8,10 @@ import {
 import { RootState } from "../../store/store";
 import { Filter } from "../Filter/Filter";
 import s from "./Todolist.module.css";
+import { TodolistType } from "../../utils/types/types";
 
-type PropsType = {
-  todoTitle: string;
-};
-
-const Todolist = (props: PropsType) => {
-  const filterValue = useSelector(
-    (state: RootState) => state.filter.filterValue
-  );
+const Todolist = (props: TodolistType) => {
+  
   let tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   const dispatch = useDispatch();
@@ -42,21 +37,9 @@ const Todolist = (props: PropsType) => {
     return setNewTask("");
   };
 
-  useEffect(() => {
-    if (filterValue === 0) {
-      setFilteredTask(tasks);
-    }
-    if (filterValue === 1) {
-      setFilteredTask(tasks.filter((t) => t.isDone === false));
-    }
-    if (filterValue === 2) {
-      setFilteredTask(tasks.filter((t) => t.isDone === true));
-    }
-  }, [filterValue, tasks]);
-
   return (
     <div className={s.box}>
-      <h3>{props.todoTitle}</h3>
+      <h3>{props.title}</h3>
       <div>
         <input
           value={newTask}

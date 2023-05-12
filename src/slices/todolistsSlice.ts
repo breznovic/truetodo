@@ -1,10 +1,10 @@
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 import { TodolistsType } from "../utils/types/types";
 
 const initialState: TodolistsType = {
   todolists: [
-    { id: nanoid(8), title: "Work", filter: "all" },
-    { id: nanoid(8), title: "Sleep", filter: "all" },
+    { id: nanoid(8), title: "Tasks for today", filter: "all" },
+    { id: nanoid(8), title: "What to do", filter: "all" },
   ],
 };
 
@@ -12,12 +12,12 @@ export const todolistsSlice = createSlice({
   name: "todolists",
   initialState,
   reducers: {
-    deleteTodolist: (state, action) => {
-        
+    changeFilter: (state, action: PayloadAction<{ filterValue: string }>) => {
+      state.todolists.filter = action.payload;
     },
   },
 });
 
-export const { deleteTodolist } = todolistsSlice.actions;
+export const { changeFilter } = todolistsSlice.actions;
 
 export default todolistsSlice.reducer;
