@@ -16,8 +16,8 @@ export const Filter = () => {
 
   const [filteredTask, setFilteredTask] = useState(tasks);
 
-  const onChangeFilter = (filterValue: FilterType) => {
-    dispatch(changeFilter(filterValue));
+  const onChangeFilter = (filterValue: FilterType, todolistId: string) => {
+    dispatch(changeFilter({filterValue, todolistId}));
   };
 
   useEffect(() => {

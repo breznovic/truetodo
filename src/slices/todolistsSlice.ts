@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
-import { TodolistsType } from "../utils/types/types";
+import { FilterType, TodolistsType } from "../utils/types/types";
 
 const initialState: TodolistsType = {
   todolists: [
@@ -12,8 +12,11 @@ export const todolistsSlice = createSlice({
   name: "todolists",
   initialState,
   reducers: {
-    changeFilter: (state, action: PayloadAction<{ filterValue: string }>) => {
-      state.todolists.filter = action.payload;
+    changeFilter: (
+      state,
+      action: PayloadAction<{ filterValue: FilterType; id: string }>
+    ) => {
+      
     },
   },
 });
