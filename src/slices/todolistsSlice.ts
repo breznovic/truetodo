@@ -15,9 +15,7 @@ export const todolistsSlice = createSlice({
     changeFilter: (
       state,
       action: PayloadAction<{ filterValue: FilterType; id: string }>
-    ) => {
-      
-    },
+    ) => {},
   },
 });
 
