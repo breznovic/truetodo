@@ -21,7 +21,7 @@ export const Filter = () => {
   };
 
   useEffect(() => {
-    if (filterValue === "all") {
+   /*  if (filterValue === "all") {
       setFilteredTask(tasks);
     }
     if (filterValue === "active") {
@@ -29,13 +29,13 @@ export const Filter = () => {
     }
     if (filterValue === "completed") {
       setFilteredTask(tasks.filter((t) => t.isDone === true));
-    }
+    } */
   }, [filterValue, tasks]);
 
   return (
     <div className={s.filter}>
       <ul>
-        <button
+      {/*   <button
           onClick={() => onChangeFilter(filterValue)}
           className={filterValue === "all" ? s.active : ""}
         >
@@ -52,7 +52,7 @@ export const Filter = () => {
           className={filterValue === "completed" ? s.active : ""}
         >
           Completed
-        </button>
+        </button> */}
       </ul>
     </div>
   );
