@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./App.module.css";
 import Todolist from "./components/Todolist/Todolist";
-import { RootState } from "./store/store";
+import { AppDispatch, RootState } from "./store/store";
 import { useEffect } from "react";
 import { fetchTodolists } from "./slices/todolistsSlice";
 
 function App() {
   let todolists = useSelector((state: RootState) => state.todolists.todolists);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-   dispatch(fetchTodolists())
-  }, []);
-
+    dispatch(fetchTodolists());
+  }, [dispatch]);
 
   return (
     <div className={s.flexbox}>

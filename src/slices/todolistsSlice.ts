@@ -21,10 +21,17 @@ const initialState: InitialstateType = {
 
 const baseUrl = "https://social-network.samuraijs.com/api/1.1";
 
+const settings = {
+  withCredentials: true,
+  headers: {
+    "API-KEY": "86a95b02-e99d-4ef6-baff-bdf2abdad209",
+  },
+};
+
 export const fetchTodolists = createAsyncThunk(
   "todolists/fetchTodolists",
   async () => {
-    const res = await axios.get(baseUrl + "/todo-lists");
+    const res = await axios.get(baseUrl + "/todo-lists", settings);
     return res.data;
   }
 );
