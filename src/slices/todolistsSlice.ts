@@ -1,12 +1,17 @@
-import { PayloadAction, createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
-import { FilterType, TodolistsType } from "../utils/types/types";
-
+import {
+  PayloadAction,
+  createAsyncThunk,
+  createSlice,
+  nanoid,
+} from "@reduxjs/toolkit";
+import { FilterType, TodolistType } from "../utils/types/types";
+import axios from "axios";
 
 type InitialstateType = {
-  todolists: TodolistsType[]
-  loading: boolean
-  error: null | string
-}
+  todolists: TodolistType[];
+  loading: boolean;
+  error: null | string;
+};
 
 const initialState: InitialstateType = {
   todolists: [],
@@ -14,14 +19,15 @@ const initialState: InitialstateType = {
   error: null,
 };
 
-const fetchTodolists = createAsyncThunk(
-  'todolists/fetchTodolists',
-  async (todolists) => {
-    const res = await 
-    return res.data
-  }
-)
+const baseUrl = "https://social-network.samuraijs.com/api/1.1";
 
+export const fetchTodolists = createAsyncThunk(
+  "todolists/fetchTodolists",
+  async () => {
+    const res = await axios.get(baseUrl + "/todo-lists");
+    return res.data;
+  }
+);
 
 export const todolistsSlice = createSlice({
   name: "todolists",
@@ -38,10 +44,14 @@ export const todolistsSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTodolists.fulfilled, (state, action) => {
+      state.loading = false;
+      state.todolists.push(action.payload);
+    });
+  },
 });
 
 export const { changeFilter } = todolistsSlice.actions;
 
 export default todolistsSlice.reducer;
-
-

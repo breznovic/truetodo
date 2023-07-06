@@ -13,5 +13,3 @@ export type TodolistType = {
   title: string;
   filter: FilterType;
 };
-
-export type TodolistsType = { todolists: TodolistType[] };
