@@ -36,6 +36,14 @@ export const fetchTodolists = createAsyncThunk(
   }
 );
 
+export const createTodolist = createAsyncThunk(
+  "todolists/createTodolist",
+  async () => {
+    const res = await axios.post(baseUrl + "/todo-lists", settings);
+    return res.data;
+  }
+);
+
 export const todolistsSlice = createSlice({
   name: "todolists",
   initialState,
@@ -55,7 +63,13 @@ export const todolistsSlice = createSlice({
     builder.addCase(fetchTodolists.fulfilled, (state, action) => {
       state.loading = false;
       state.todolists.push(action.payload);
-    });
+      return state;
+    }),
+      builder.addCase(createTodolist.fulfilled, (state, action) => {
+        state.loading = false;
+        state.todolists.push(action.payload);
+        return state;
+      });
   },
 });
 
