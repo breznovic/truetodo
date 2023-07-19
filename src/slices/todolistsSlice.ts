@@ -5,7 +5,7 @@ import {
   nanoid,
 } from "@reduxjs/toolkit";
 import { FilterType, TodolistType } from "../utils/types/types";
-import {todolistAPI} from '../api/todolistsAPI';
+import { todolistAPI } from "../api/todolistsAPI";
 
 type InitialstateType = {
   todolists: TodolistType[];
@@ -19,10 +19,10 @@ const initialState: InitialstateType = {
   error: null,
 };
 
-export const fetchTodolists = createAsyncThunk(
+export const fetchTodolists = createAsyncThunk<TodolistType[]>(
   "todolists/fetchTodolists",
-  async () => {
-    const res = await todolistAPI.fetchTodolists
+  async (): Promise<TodolistType[]> => {
+    const res = await todolistAPI.fetchTodolists();
     return res.data;
   }
 );
@@ -31,7 +31,7 @@ export const createTodolist = createAsyncThunk(
   "todolists/createTodolist",
   async () => {
     const res = await todolistAPI.createTodolist;
-    return res.data;
+    return res.name;
   }
 );
 
@@ -51,12 +51,15 @@ export const todolistsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchTodolists.fulfilled, (state, action) => {
-      state.loading = false;
-      state.todolists.push(action.payload);
-      return state;
-    });
     builder.addCase(
+      fetchTodolists.fulfilled,
+      (state, action: PayloadAction<TodolistType[]>) => {
+        state.loading = false;
+        state.todolists = [...state.todolists, ...action.payload];
+        return state;
+      }
+    );
+    /*     builder.addCase(
       createTodolist.fulfilled,
       (state, action: PayloadAction<{ title: string }>) => {
         state.loading = false;
@@ -68,7 +71,7 @@ export const todolistsSlice = createSlice({
         state.todolists.push(newTodolist);
         return state;
       }
-    );
+    ); */
   },
 });
 
