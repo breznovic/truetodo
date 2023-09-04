@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import { TextField } from '@mui/material';
+import { Input } from 'antd';
 
 type EditableSpanPropsType = {
     value: string
@@ -23,6 +23,6 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
     }
 
     return editMode
-        ?    <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
+        ?    <Input value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
         : <span onDoubleClick={activateEditMode}>{props.value}</span>
 });
