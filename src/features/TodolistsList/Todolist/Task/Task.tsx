@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { IconButton } from "@mui/material";
 import { EditableSpan } from "../../../../components/EditableSpan/EditableSpan";
 import { Delete } from "@mui/icons-material";
 import { TaskStatuses, TaskType } from "../../../../api/todolists-api";
-import { Checkbox } from "antd";
+import { Checkbox, Slider } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 type TaskPropsType = {
@@ -46,6 +46,8 @@ export const Task = React.memo((props: TaskPropsType) => {
     [props.task.id, props.todolistId]
   );
 
+  const [disabled, setDisabled] = useState(false);
+
   return (
     <div
       key={props.task.id}
@@ -60,6 +62,8 @@ export const Task = React.memo((props: TaskPropsType) => {
       <IconButton onClick={onClickHandler}>
         <Delete />
       </IconButton>
+      <Slider defaultValue={30} disabled={disabled} />
+      <Slider range defaultValue={[20, 50]} disabled={disabled} />
     </div>
   );
 });
