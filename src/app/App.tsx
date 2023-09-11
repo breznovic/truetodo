@@ -89,7 +89,6 @@ function App({ demo = false }: PropsType) {
               )}
             </Header>
           </Layout>
-
           {status === "loading" && <LinearProgress />}
         </AppBar>
         <Container fixed>

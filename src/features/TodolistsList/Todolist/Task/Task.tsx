@@ -55,7 +55,6 @@ export const Task = React.memo((props: TaskPropsType) => {
         checked={props.task.status === TaskStatuses.Completed}
         onChange={onChangeHandler}
       />
-
       <EditableSpan value={props.task.title} onChange={onTitleChangeHandler} />
       <IconButton onClick={onClickHandler}>
         <Delete />
