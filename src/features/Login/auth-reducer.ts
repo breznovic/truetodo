@@ -62,3 +62,5 @@ type InitialStateType = {
 }
 
 type ThunkDispatch = Dispatch<ActionsType | SetAppStatusActionType | SetAppErrorActionType>
+
+
