@@ -7,6 +7,7 @@ import { initializeAppTC, RequestStatusType } from "./app-reducer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../features/Login/Login";
 import { logoutTC } from "../features/Login/auth-reducer";
+import { green, purple } from "@mui/material/colors";
 import {
   AppBar,
   Button,
@@ -62,8 +63,8 @@ function App({ demo = false }: PropsType) {
 
   const theme = createTheme({
     palette: {
-      primary: "#FF5733",
-      inherit: "#F67766",
+      primary: green,
+      secondary: purple,
     },
   });
 
@@ -74,7 +75,7 @@ function App({ demo = false }: PropsType) {
           <ErrorSnackbar />
           <AppBar position="static" color="primary">
             <Toolbar>
-              <IconButton edge="start" color="inherit" aria-label="menu">
+              <IconButton edge="start" color="secondary" aria-label="menu">
                 <Menu />
               </IconButton>
               <Typography variant="h6">Todolist</Typography>
