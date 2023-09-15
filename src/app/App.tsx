@@ -20,7 +20,7 @@ import {
   Typography,
   createTheme,
 } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
 
 type PropsType = {
   demo?: boolean;
@@ -76,7 +76,7 @@ function App({ demo = false }: PropsType) {
           <AppBar position="static" color="primary">
             <Toolbar>
               <IconButton edge="start" color="secondary" aria-label="menu">
-                <Menu />
+                <EventAvailableOutlinedIcon />
               </IconButton>
               <Typography variant="h6">Todolist</Typography>
               {isLoggedIn && (
