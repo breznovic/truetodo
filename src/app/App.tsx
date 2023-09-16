@@ -20,7 +20,8 @@ import {
   Typography,
   createTheme,
 } from "@mui/material";
-import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import s from "./App.module.css";
 
 type PropsType = {
   demo?: boolean;
@@ -80,7 +81,7 @@ function App({ demo = false }: PropsType) {
               </IconButton>
               <Typography variant="h6">Todolist</Typography>
               {isLoggedIn && (
-                <Button color="inherit" onClick={logoutHandler}>
+                <Button color="inherit" onClick={logoutHandler} >
                   Log out
                 </Button>
               )}
