@@ -81,7 +81,7 @@ function App({ demo = false }: PropsType) {
               </IconButton>
               <Typography variant="h6">Todolist</Typography>
               {isLoggedIn && (
-                <Button color="inherit" onClick={logoutHandler} >
+                <Button color="inherit" onClick={logoutHandler} sx={{ ml: '50rem' }} >
                   Log out
                 </Button>
               )}
