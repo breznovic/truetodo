@@ -7,7 +7,7 @@ import { initializeAppTC, RequestStatusType } from "./app-reducer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../features/Login/Login";
 import { logoutTC } from "../features/Login/auth-reducer";
-import { green, purple } from "@mui/material/colors";
+import { brown, green, purple } from "@mui/material/colors";
 import {
   AppBar,
   Button,
@@ -21,7 +21,6 @@ import {
   createTheme,
 } from "@mui/material";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
-import s from "./App.module.css";
 
 type PropsType = {
   demo?: boolean;
@@ -65,9 +64,40 @@ function App({ demo = false }: PropsType) {
   const theme = createTheme({
     palette: {
       primary: green,
-      secondary: purple,
+      secondary: {
+        main: "#FF5733",
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+      },
     },
   });
+
+  const buttonStyle = {
+    ml: {
+      xs: "10rem",
+      sm: "20rem",
+      md: "40rem",
+      lg: "50rem",
+      xl: "90rem",
+    },
+  };
+
+  const titleStyle = {
+    ml: {
+      xs: "1rem",
+      sm: "2rem",
+      md: "3rem",
+      lg: "4rem",
+      xl: "5rem",
+    },
+  };
 
   return (
     <BrowserRouter>
@@ -75,13 +105,17 @@ function App({ demo = false }: PropsType) {
         <ThemeProvider theme={theme}>
           <ErrorSnackbar />
           <AppBar position="static" color="primary">
-            <Toolbar>
+            <Toolbar sx={{ ml: titleStyle.ml }}>
               <IconButton edge="start" color="secondary" aria-label="menu">
                 <EventAvailableOutlinedIcon />
               </IconButton>
               <Typography variant="h6">Todolist</Typography>
               {isLoggedIn && (
-                <Button color="inherit" onClick={logoutHandler} sx={{ ml: '50rem' }} >
+                <Button
+                  color="inherit"
+                  onClick={logoutHandler}
+                  sx={{ ml: buttonStyle.ml }}
+                >
                   Log out
                 </Button>
               )}
