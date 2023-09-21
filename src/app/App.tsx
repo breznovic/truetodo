@@ -7,7 +7,6 @@ import { initializeAppTC, RequestStatusType } from "./app-reducer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../features/Login/Login";
 import { logoutTC } from "../features/Login/auth-reducer";
-import { brown, green, purple } from "@mui/material/colors";
 import {
   AppBar,
   Button,
@@ -18,9 +17,9 @@ import {
   ThemeProvider,
   Toolbar,
   Typography,
-  createTheme,
 } from "@mui/material";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import { theme } from "../styles/theme";
 
 type PropsType = {
   demo?: boolean;
@@ -60,24 +59,6 @@ function App({ demo = false }: PropsType) {
       </div>
     );
   }
-
-  const theme = createTheme({
-    palette: {
-      primary: green,
-      secondary: {
-        main: "#FF5733",
-      },
-    },
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 900,
-        lg: 1200,
-        xl: 1536,
-      },
-    },
-  });
 
   const buttonStyle = {
     ml: {
