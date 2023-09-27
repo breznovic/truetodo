@@ -60,7 +60,7 @@ function App({ demo = false }: PropsType) {
     );
   }
 
-  /* const buttonStyle = {
+  const buttonStyle = {
     ml: {
       xs: "10rem",
       sm: "20rem",
@@ -78,7 +78,7 @@ function App({ demo = false }: PropsType) {
       lg: "4rem",
       xl: "5rem",
     },
-  }; */
+  };
 
   return (
     <BrowserRouter>
