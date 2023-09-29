@@ -80,9 +80,6 @@ function App({ demo = false }: PropsType) {
     },
   };
 
-<Typography component="legend">Read only</Typography>
-<Rating name="read-only" value={value} readOnly />
-
   return (
     <BrowserRouter>
       <div>
