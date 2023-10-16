@@ -1,6 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { IconButton, TextField } from '@mui/material';
-import { AddBox } from '@mui/icons-material';
+import FileDownloadDoneIcon from '@mui/icons-material/FileDownloadDone';
 
 type AddItemFormPropsType = {
 	addItem: (title: string) => void
@@ -45,7 +45,7 @@ export const AddItemForm = React.memo(function ({addItem, disabled = false}: Add
 							 helperText={error}
 		/>
 		<IconButton color="primary" onClick={addItemHandler} disabled={disabled}>
-			<AddBox/>
+			<FileDownloadDoneIcon/>
 		</IconButton>
 	</div>
 })

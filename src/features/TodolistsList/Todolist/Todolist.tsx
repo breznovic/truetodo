@@ -7,7 +7,7 @@ import { FilterValuesType, TodolistDomainType } from '../todolists-reducer'
 import { fetchTasksTC } from '../tasks-reducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { Button, IconButton } from '@mui/material'
-import { Delete } from '@mui/icons-material'
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 type PropsType = {
     todolist: TodolistDomainType
@@ -62,7 +62,7 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
     return <div>
         <h3><EditableSpan value={props.todolist.title} onChange={changeTodolistTitle}/>
             <IconButton onClick={removeTodolist} disabled={props.todolist.entityStatus === 'loading'}>
-                <Delete/>
+                <HighlightOffIcon/>
             </IconButton>
         </h3>
         <AddItemForm addItem={addTask} disabled={props.todolist.entityStatus === 'loading'}/>
