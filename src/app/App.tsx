@@ -19,7 +19,7 @@ import {
   Typography,
 } from "@mui/material";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
-import { theme } from "../styles/theme";
+import { buttonStyle, theme, titleStyle } from "../styles/theme";
 
 type PropsType = {
   demo?: boolean;
@@ -59,26 +59,6 @@ function App({ demo = false }: PropsType) {
       </div>
     );
   }
-
-  const buttonStyle = {
-    ml: {
-      xs: "10rem",
-      sm: "20rem",
-      md: "40rem",
-      lg: "50rem",
-      xl: "90rem",
-    },
-  };
-
-  const titleStyle = {
-    ml: {
-      xs: "1rem",
-      sm: "2rem",
-      md: "3rem",
-      lg: "4rem",
-      xl: "5rem",
-    },
-  };
 
   return (
     <BrowserRouter>

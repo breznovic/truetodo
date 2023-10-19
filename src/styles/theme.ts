@@ -18,3 +18,23 @@ export const theme = createTheme({
       },
     },
   });
+
+  export const buttonStyle = {
+    ml: {
+      xs: "10rem",
+      sm: "20rem",
+      md: "40rem",
+      lg: "50rem",
+      xl: "90rem",
+    },
+  };
+
+  export const titleStyle = {
+    ml: {
+      xs: "1rem",
+      sm: "2rem",
+      md: "3rem",
+      lg: "4rem",
+      xl: "5rem",
+    },
+  };
