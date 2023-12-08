@@ -10,19 +10,19 @@ type TaskPropsType = {
   changeTaskStatus: (
     id: string,
     status: TaskStatuses,
-    todolistId: string
+    todolistId: string,
   ) => void;
   changeTaskTitle: (
     taskId: string,
     newTitle: string,
-    todolistId: string
+    todolistId: string,
   ) => void;
   removeTask: (taskId: string, todolistId: string) => void;
 };
 export const Task = React.memo((props: TaskPropsType) => {
   const onClickHandler = useCallback(
     () => props.removeTask(props.task.id, props.todolistId),
-    [props.task.id, props.todolistId]
+    [props.task.id, props.todolistId],
   );
 
   const onChangeHandler = useCallback(
@@ -31,17 +31,17 @@ export const Task = React.memo((props: TaskPropsType) => {
       props.changeTaskStatus(
         props.task.id,
         newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New,
-        props.todolistId
+        props.todolistId,
       );
     },
-    [props.task.id, props.todolistId]
+    [props.task.id, props.todolistId],
   );
 
   const onTitleChangeHandler = useCallback(
     (newValue: string) => {
       props.changeTaskTitle(props.task.id, newValue, props.todolistId);
     },
-    [props.task.id, props.todolistId]
+    [props.task.id, props.todolistId],
   );
 
   return (
