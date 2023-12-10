@@ -3,6 +3,7 @@ import { authAPI, LoginParamsType } from "../../api/todolists-api";
 import { AppThunk } from "../../app/store";
 import { handleServerAppError, handleServerNetworkError } from "../../utils/error-utils";
 import { appActions } from "../../app/app-reducer";
+import { clearTasksAndTodolists } from "../../common/actions/common.actions";
 
 
 const slice = createSlice({
