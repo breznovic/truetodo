@@ -6,7 +6,7 @@ import {
   todolistsThunks,
 } from "features/TodolistsList/todolists.reducer";
 import { tasksThunks } from "features/TodolistsList/tasks.reducer";
-import { Grid, Paper, Skeleton } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { AddItemForm } from "common/components";
 import { Todolist } from "./Todolist/Todolist";
 import { Navigate } from "react-router-dom";
@@ -15,13 +15,11 @@ import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
 import { selectTasks } from "features/TodolistsList/tasks.selectors";
 import { selectTodolists } from "features/TodolistsList/todolists.selectors";
 import { TaskStatuses } from "common/enums";
-import { selectIsInitialized } from "app/app.selectors";
 
 export const TodolistsList = () => {
   const todolists = useSelector(selectTodolists);
   const tasks = useSelector(selectTasks);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isInitialized = useSelector(selectIsInitialized);
 
   const {
     removeTodolist: removeTodolistThunk,
@@ -101,23 +99,19 @@ export const TodolistsList = () => {
           let allTodolistTasks = tasks[tl.id];
           return (
             <Grid item key={tl.id}>
-              {isInitialized ? (
-                <Paper style={{ padding: "10px" }}>
-                  <Todolist
-                    todolist={tl}
-                    tasks={allTodolistTasks}
-                    removeTask={removeTask}
-                    changeFilter={changeFilter}
-                    addTask={addTask}
-                    changeTaskStatus={changeStatus}
-                    removeTodolist={removeTodolist}
-                    changeTaskTitle={changeTaskTitle}
-                    changeTodolistTitle={changeTodolistTitle}
-                  />
-                </Paper>
-              ) : (
-                <Skeleton variant="rectangular" width="100%" height={118} />
-              )}
+              <Paper style={{ padding: "10px" }} elevation={3}>
+                <Todolist
+                  todolist={tl}
+                  tasks={allTodolistTasks}
+                  removeTask={removeTask}
+                  changeFilter={changeFilter}
+                  addTask={addTask}
+                  changeTaskStatus={changeStatus}
+                  removeTodolist={removeTodolist}
+                  changeTaskTitle={changeTaskTitle}
+                  changeTodolistTitle={changeTodolistTitle}
+                />
+              </Paper>
             </Grid>
           );
         })}
