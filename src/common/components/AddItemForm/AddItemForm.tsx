@@ -1,13 +1,16 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { IconButton, TextField } from "@mui/material";
-import { AddBox } from "@mui/icons-material";
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
 type AddItemFormPropsType = {
   addItem: (title: string) => void;
   disabled?: boolean;
 };
 
-export const AddItemForm = React.memo(function ({ addItem, disabled = false }: AddItemFormPropsType) {
+export const AddItemForm = React.memo(function ({
+  addItem,
+  disabled = false,
+}: AddItemFormPropsType) {
   let [title, setTitle] = useState("");
   let [error, setError] = useState<string | null>(null);
 
@@ -46,7 +49,7 @@ export const AddItemForm = React.memo(function ({ addItem, disabled = false }: A
         helperText={error}
       />
       <IconButton color="primary" onClick={addItemHandler} disabled={disabled}>
-        <AddBox />
+        <AddToPhotosIcon />
       </IconButton>
     </div>
   );

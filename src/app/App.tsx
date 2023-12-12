@@ -11,7 +11,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 import { Login } from "features/auth/ui/login/login";
 import "./App.css";
 import { TodolistsList } from "features/TodolistsList/TodolistsList";
@@ -53,14 +53,19 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <ErrorSnackbar />
-        <AppBar position="static">
+        <AppBar position="static" sx={{ minHeight: "60px" }}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <Menu />
+            <IconButton edge="start" color="inherit">
+              <EditNoteOutlinedIcon sx={{ fontSize: "50px" }} />
             </IconButton>
-            <Typography variant="h6">News</Typography>
+            <Typography variant="inherit">My Todolist</Typography>
             {isLoggedIn && (
-              <Button color="inherit" onClick={logoutHandler}>
+              <Button
+                color="inherit"
+                onClick={logoutHandler}
+                sx={{ ml: "100rem", maxHeight: "45px", fontSize: "15px" }}
+                variant="outlined"
+              >
                 Log out
               </Button>
             )}
