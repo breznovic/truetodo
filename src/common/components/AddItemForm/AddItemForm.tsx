@@ -5,11 +5,13 @@ import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 type AddItemFormPropsType = {
   addItem: (title: string) => void;
   disabled?: boolean;
+  label: string;
 };
 
 export const AddItemForm = React.memo(function ({
   addItem,
   disabled = false,
+  label
 }: AddItemFormPropsType) {
   let [title, setTitle] = useState("");
   let [error, setError] = useState<string | null>(null);
@@ -45,7 +47,7 @@ export const AddItemForm = React.memo(function ({
         value={title}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
-        label="Title"
+        label={label}
         helperText={error}
       />
       <IconButton color="primary" onClick={addItemHandler} disabled={disabled}>

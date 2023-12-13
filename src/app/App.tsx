@@ -20,6 +20,7 @@ import { useActions } from "common/hooks";
 import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
 import { selectAppStatus, selectIsInitialized } from "app/app.selectors";
 import { authThunks } from "features/auth/model/auth.slice";
+import s from "./App.module.css";
 
 function App() {
   const status = useSelector(selectAppStatus);
@@ -72,7 +73,7 @@ function App() {
           </Toolbar>
           {status === "loading" && <LinearProgress />}
         </AppBar>
-        <Container fixed>
+        <Container fixed className={s.app}>
           <Routes>
             <Route path={"/"} element={<TodolistsList />} />
             <Route path={"/login"} element={<Login />} />

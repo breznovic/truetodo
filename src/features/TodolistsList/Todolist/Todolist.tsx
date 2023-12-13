@@ -82,7 +82,7 @@ export const Todolist = React.memo(function (props: PropsType) {
   }
 
   return (
-    <div>
+    <div style={{color: "#fadb6f"}}>
       <h3>
         <EditableSpan
           value={props.todolist.title}
@@ -98,6 +98,7 @@ export const Todolist = React.memo(function (props: PropsType) {
       <AddItemForm
         addItem={addTask}
         disabled={props.todolist.entityStatus === "loading"}
+        label="Enter new task"
       />
       <div>
         {tasksForTodolist.map((t) => (

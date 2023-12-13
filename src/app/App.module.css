@@ -1,0 +1,7 @@
+.app {
+  background-image: url("../assets/images/wall.jpg");
+  min-height: 878px;
+  min-width: 1850px;
+  background-size: cover;
+}
+

@@ -92,14 +92,26 @@ export const TodolistsList = () => {
   return (
     <>
       <Grid container style={{ padding: "20px" }}>
-        <AddItemForm addItem={addTodolist} />
+        <Paper
+          style={{
+            padding: "10px",
+            marginLeft: "-20px",
+            backgroundColor: "#edec89",
+          }}
+          elevation={6}
+        >
+          <AddItemForm addItem={addTodolist} label="Enter new Todolist title" />
+        </Paper>
       </Grid>
       <Grid container spacing={3}>
         {todolists.map((tl) => {
           let allTodolistTasks = tasks[tl.id];
           return (
             <Grid item key={tl.id}>
-              <Paper style={{ padding: "10px" }} elevation={3}>
+              <Paper
+                style={{ padding: "10px", backgroundColor: "#edec89" }}
+                elevation={12}
+              >
                 <Todolist
                   todolist={tl}
                   tasks={allTodolistTasks}
