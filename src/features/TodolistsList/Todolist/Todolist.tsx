@@ -11,6 +11,7 @@ import { TaskType } from "features/TodolistsList/todolists.api";
 import { TaskStatuses } from "common/enums";
 import { useActions } from "common/hooks";
 import { AddItemForm, EditableSpan } from "common/components";
+import s from './Todolist.module.css'
 
 type PropsType = {
   todolist: TodolistDomainType;
@@ -83,7 +84,7 @@ export const Todolist = React.memo(function (props: PropsType) {
 
   return (
     <div style={{color: "#fadb6f"}}>
-      <h3>
+      <h3 className={s.titleColor}>
         <EditableSpan
           value={props.todolist.title}
           onChange={changeTodolistTitle}
@@ -100,7 +101,7 @@ export const Todolist = React.memo(function (props: PropsType) {
         disabled={props.todolist.entityStatus === "loading"}
         label="Enter new task"
       />
-      <div>
+      <div className={s.taskColor}>
         {tasksForTodolist.map((t) => (
           <Task
             key={t.id}
@@ -112,7 +113,7 @@ export const Todolist = React.memo(function (props: PropsType) {
           />
         ))}
       </div>
-      <div style={{ paddingTop: "10px" }}>
+      <div className={s.buttons}>
         <Button
           variant={props.todolist.filter === "all" ? "contained" : "text"}
           onClick={onAllClickHandler}
