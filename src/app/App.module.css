@@ -1,7 +1,18 @@
 .app {
   background-image: url("../assets/images/wall.jpg");
-  min-height: 864px;
+  min-height: 852px;
   min-width: 1850px;
   background-size: cover;
   position: relative;
+}
+
+.startApp {
+  position: "fixed";
+  top: 30%;
+  text-align: center;
+  width: 100%;
+}
+
+.appBar {
+  min-height: 80px;
 }
