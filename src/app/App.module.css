@@ -15,4 +15,17 @@
 
 .appBar {
   min-height: 80px;
+  position: static;
+}
+
+.startAppStyle {
+  position: fixed;
+  top: 45%;
+  text-align: center;
+  width: 100%;
+}
+
+.button {
+  margin-left: 600px;
+  border: 1px solid white;
 }
