@@ -1,9 +1,15 @@
 .app {
-  background-image: url("../assets/images/wall.jpg");
   min-height: 852px;
-  min-width: 1850px;
-  background-size: cover;
+  min-width: 1800px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  flex-grow: 1;
+  background-image: url("../assets/images/wall.jpg");
+  background-size: cover;
 }
 
 .startApp {
@@ -26,6 +32,22 @@
 }
 
 .button {
-  margin-left: 600px;
-  border: 1px solid white;
+  margin-left: 1300px;
+  margin-top: 8px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 20px;
+  border: 1px white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.button:hover {
+  background-color: beige;
+}
+
+.button:focus {
+  outline: none;
 }

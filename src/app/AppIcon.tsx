@@ -1,6 +1,7 @@
 import React from "react";
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 import { IconButton, Typography, TypographyTypeMap } from "@mui/material";
+import "@fontsource/roboto";
 
 function AppTitleBar() {
   const iconStyle = {

@@ -55,10 +55,12 @@ function App() {
           {status === "loading" && <LinearProgress />}
         </AppBar>
         <Container fixed className={s.app}>
-          <Routes>
-            <Route path={"/"} element={<TodolistsList />} />
-            <Route path={"/login"} element={<Login />} />
-          </Routes>
+          <div className={s.imageContainer}>
+            <Routes>
+              <Route path={"/"} element={<TodolistsList />} />
+              <Route path={"/login"} element={<Login />} />
+            </Routes>
+          </div>
         </Container>
       </div>
     </BrowserRouter>
