@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 type FieldErrorType = {
   error: string;
   field: string;
@@ -9,3 +11,7 @@ export type BaseResponseType<D = {}> = {
   data: D;
   fieldsErrors: FieldErrorType[];
 };
+
+export type PaperProps = {
+  children: ReactNode;
+}

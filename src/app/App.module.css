@@ -1,15 +1,15 @@
 .app {
-  min-height: 852px;
-  min-width: 1800px;
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
 .imageContainer {
-  flex-grow: 1;
-  background-image: url("../assets/images/wall.jpg");
+  background-image: url("../assets/images/note.webp");
   background-size: cover;
+  min-height: 932px;
+  min-width: 1851px;
+  margin-left: -350px;
 }
 
 .startApp {
