@@ -1,15 +1,8 @@
 .app {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.imageContainer {
-  background-image: url("../assets/images/note.webp");
-  background-size: cover;
-  min-height: 932px;
-  min-width: 1851px;
-  margin-left: -350px;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 925px;
+  min-width: 1850px;
 }
 
 .startApp {
@@ -50,4 +43,46 @@
 
 .button:focus {
   outline: none;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+
+  .startAppStyle {
+    top: 40%;
+  }
+
+  .button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app {
+    padding: 15px;
+  }
+
+  .startAppStyle {
+    top: 45%;
+  }
+
+  .button {
+    margin-left: 10px;
+    margin-top: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .app {
+  }
+
+  .startAppStyle {
+  }
+
+  .button {
+  }
 }
