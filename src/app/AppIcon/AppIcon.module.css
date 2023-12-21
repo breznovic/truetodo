@@ -1,0 +1,11 @@
+.icon {
+  margin-top: 12px;
+  filter: invert(100%);
+}
+
+.title {
+  font-size: 35px;
+  color: wheat;
+  white-space: nowrap;
+  margin: 6px 0px 0px 3px;
+}

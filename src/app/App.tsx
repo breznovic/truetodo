@@ -16,7 +16,7 @@ import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
 import { selectAppStatus, selectIsInitialized } from "app/app.selectors";
 import s from "./App.module.css";
 import { authThunks } from "features/auth/model/auth.slice";
-import AppTitleBar from "./AppIcon";
+import AppTitleBar from "./AppIcon/AppIcon";
 
 function App() {
   const status = useSelector(selectAppStatus);
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div className={s.app}>
         <ErrorSnackbar />
         <AppBar className={s.appBar}>
           <Toolbar>
@@ -54,7 +54,7 @@ function App() {
           </Toolbar>
           {status === "loading" && <LinearProgress />}
         </AppBar>
-        <Container fixed className={s.app}>
+        <Container fixed >
           <Routes>
             <Route path={"/"} element={<TodolistsList />} />
             <Route path={"/login"} element={<Login />} />
