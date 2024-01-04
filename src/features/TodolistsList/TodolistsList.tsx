@@ -15,7 +15,6 @@ import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
 import { selectTasks } from "features/TodolistsList/tasks.selectors";
 import { selectTodolists } from "features/TodolistsList/todolists.selectors";
 import { TaskStatuses } from "common/enums";
-import s from "./TodolistsList.module.css";
 
 export const TodolistsList = () => {
   const todolists = useSelector(selectTodolists);
