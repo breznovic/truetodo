@@ -6,7 +6,7 @@ import {
   todolistsThunks,
 } from "features/TodolistsList/todolists.reducer";
 import { tasksThunks } from "features/TodolistsList/tasks.reducer";
-import { Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import { AddItemForm } from "common/components";
 import { Todolist } from "./Todolist/Todolist";
 import { Navigate } from "react-router-dom";
@@ -91,44 +91,51 @@ export const TodolistsList = () => {
 
   return (
     <>
-      <Grid container style={{ padding: "20px" }}>
-        <Paper
-          sx={{
-            padding: "10px",
-            marginTop: "75px",
-            marginLeft: "-20px",
-            backgroundColor: "#edec89",
-          }}
-          elevation={6}
-        >
-          <AddItemForm addItem={addTodolist} label="Enter new Todolist title" />
-        </Paper>
-      </Grid>
-      <Grid container spacing={3}>
-        {todolists.map((tl) => {
-          let allTodolistTasks = tasks[tl.id];
-          return (
-            <Grid item key={tl.id}>
-              <Paper
-                sx={{ padding: "10px", backgroundColor: "#edec89", marginRight: "40px" }}
-                elevation={12}
-              >
-                <Todolist
-                  todolist={tl}
-                  tasks={allTodolistTasks}
-                  removeTask={removeTask}
-                  changeFilter={changeFilter}
-                  addTask={addTask}
-                  changeTaskStatus={changeStatus}
-                  removeTodolist={removeTodolist}
-                  changeTaskTitle={changeTaskTitle}
-                  changeTodolistTitle={changeTodolistTitle}
-                />
-              </Paper>
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Container fixed>
+        <Grid container style={{ padding: "20px" }}>
+          <Paper
+            sx={{
+              padding: "10px",
+              margin: "75px 0px 0px -20px",
+              backgroundColor: "#edec89",
+            }}
+            elevation={6}
+          >
+            <AddItemForm
+              addItem={addTodolist}
+              label="Enter new Todolist title"
+            />
+          </Paper>
+        </Grid>
+        <Grid container spacing={3}>
+          {todolists.map((tl) => {
+            let allTodolistTasks = tasks[tl.id];
+            return (
+              <Grid item key={tl.id}>
+                <Paper
+                  sx={{
+                    padding: "10px",
+                    backgroundColor: "#edec89",
+                  }}
+                  elevation={12}
+                >
+                  <Todolist
+                    todolist={tl}
+                    tasks={allTodolistTasks}
+                    removeTask={removeTask}
+                    changeFilter={changeFilter}
+                    addTask={addTask}
+                    changeTaskStatus={changeStatus}
+                    removeTodolist={removeTodolist}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTodolistTitle={changeTodolistTitle}
+                  />
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
     </>
   );
 };
