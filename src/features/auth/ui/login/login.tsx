@@ -73,12 +73,8 @@ export const Login = () => {
   return (
     <Paper
       elevation={3}
+      className={s.form}
       sx={{
-        minHeight: "520px",
-        minWidth: "650px",
-        mt: "100px",
-        ml: "550px",
-        position: "absolute",
         backgroundColor: "#edec89",
       }}
     >
