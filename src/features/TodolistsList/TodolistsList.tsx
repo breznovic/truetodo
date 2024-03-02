@@ -98,6 +98,7 @@ export const TodolistsList = () => {
               padding: "10px",
               margin: "75px 0px 0px -20px",
               backgroundColor: "#edec89",
+              marginLeft: "40px",
             }}
             elevation={6}
           >
@@ -111,11 +112,12 @@ export const TodolistsList = () => {
           {todolists.map((tl) => {
             let allTodolistTasks = tasks[tl.id];
             return (
-              <Grid item key={tl.id}>
+              <Grid item xs="auto" key={tl.id}>
                 <Paper
                   sx={{
                     padding: "10px",
                     backgroundColor: "#edec89",
+                    marginLeft: "60px",
                   }}
                   elevation={12}
                 >
