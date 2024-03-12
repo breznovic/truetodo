@@ -1,6 +1,7 @@
 .app {
   background-color: #b8cfbf;
- min-height: 100vh;
+  min-height: 930px;
+  min-width: 380px;
 }
 
 .startApp {
@@ -40,4 +41,11 @@
 
 .button:focus {
   outline: none;
+}
+
+@media only screen and (width: 375px) and (height: 667px) {
+  .app {
+    min-height: 500px;
+    min-width: 100px;
+  }
 }

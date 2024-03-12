@@ -6,7 +6,7 @@ import {
   todolistsThunks,
 } from "features/TodolistsList/todolists.reducer";
 import { tasksThunks } from "features/TodolistsList/tasks.reducer";
-import { Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper, ThemeProvider } from "@mui/material";
 import { AddItemForm } from "common/components";
 import { Todolist } from "./Todolist/Todolist";
 import { Navigate } from "react-router-dom";
@@ -15,6 +15,19 @@ import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
 import { selectTasks } from "features/TodolistsList/tasks.selectors";
 import { selectTodolists } from "features/TodolistsList/todolists.selectors";
 import { TaskStatuses } from "common/enums";
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 768,
+      lg: 1025,
+      xl: 1536,
+    },
+  },
+});
 
 export const TodolistsList = () => {
   const todolists = useSelector(selectTodolists);
@@ -90,54 +103,72 @@ export const TodolistsList = () => {
   }
 
   return (
-    <>
-      <Container fixed>
-        <Grid container style={{ padding: "20px" }}>
-          <Paper
-            sx={{
-              padding: "10px",
-              margin: "75px 0px 0px -20px",
-              backgroundColor: "#edec89",
-              marginLeft: "40px",
-            }}
-            elevation={6}
-          >
-            <AddItemForm
-              addItem={addTodolist}
-              label="Enter new Todolist title"
-            />
-          </Paper>
-        </Grid>
-        <Grid container spacing={3}>
-          {todolists.map((tl) => {
-            let allTodolistTasks = tasks[tl.id];
-            return (
-              <Grid item xs="auto" key={tl.id}>
-                <Paper
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#edec89",
-                    marginLeft: "60px",
-                  }}
-                  elevation={12}
-                >
-                  <Todolist
-                    todolist={tl}
-                    tasks={allTodolistTasks}
-                    removeTask={removeTask}
-                    changeFilter={changeFilter}
-                    addTask={addTask}
-                    changeTaskStatus={changeStatus}
-                    removeTodolist={removeTodolist}
-                    changeTaskTitle={changeTaskTitle}
-                    changeTodolistTitle={changeTodolistTitle}
-                  />
-                </Paper>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
-    </>
+    <ThemeProvider theme={theme}>
+      <div>
+        <Container fixed>
+          <Grid container style={{ padding: "20px" }}>
+            <Paper
+              sx={{
+                padding: "10px",
+                margin: "75px 0px 0px 0px",
+                backgroundColor: "#edec89",
+              }}
+              elevation={6}
+            >
+              <AddItemForm
+                addItem={addTodolist}
+                label="Enter new Todolist title"
+              />
+            </Paper>
+          </Grid>
+          <Grid container spacing={3}>
+            {todolists.map((tl) => {
+              let allTodolistTasks = tasks[tl.id];
+              return (
+                <Grid item xs={12} sm={6} md={6} lg={4} key={tl.id}>
+                  <Paper
+                    sx={{
+                      display: "flex",
+                      flexWrap: "nowrap",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "10px",
+                      backgroundColor: "#edec89",
+                      marginLeft: "20px",
+                      width: "90%",
+                      [theme.breakpoints.up("xs")]: {
+                        width: "85%",
+                      },
+                      [theme.breakpoints.up("sm")]: {
+                        width: "88%",
+                      },
+                      [theme.breakpoints.up("md")]: {
+                        width: "88%",
+                      },
+                      [theme.breakpoints.up("lg")]: {
+                        width: "88%",
+                      },
+                    }}
+                    elevation={12}
+                  >
+                    <Todolist
+                      todolist={tl}
+                      tasks={allTodolistTasks}
+                      removeTask={removeTask}
+                      changeFilter={changeFilter}
+                      addTask={addTask}
+                      changeTaskStatus={changeStatus}
+                      removeTodolist={removeTodolist}
+                      changeTaskTitle={changeTaskTitle}
+                      changeTodolistTitle={changeTodolistTitle}
+                    />
+                  </Paper>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Container>
+      </div>
+    </ThemeProvider>
   );
 };

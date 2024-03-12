@@ -11,7 +11,7 @@ import { TaskType } from "features/TodolistsList/todolists.api";
 import { TaskStatuses } from "common/enums";
 import { useActions } from "common/hooks";
 import { AddItemForm, EditableSpan } from "common/components";
-import s from './Todolist.module.css'
+import s from "./Todolist.module.css";
 
 type PropsType = {
   todolist: TodolistDomainType;
@@ -83,7 +83,7 @@ export const Todolist = React.memo(function (props: PropsType) {
   }
 
   return (
-    <div style={{color: "#fadb6f"}}>
+    <div style={{ color: "#fadb6f" }}>
       <h3 className={s.titleColor}>
         <EditableSpan
           value={props.todolist.title}
