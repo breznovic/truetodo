@@ -79,7 +79,12 @@ export const Login = () => {
           backgroundColor: "#edec89",
         }}
       >
-        <Grid container justifyContent="center" marginLeft='-45px'>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          marginLeft="-40px"
+        >
           <Grid item xs={4}>
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
