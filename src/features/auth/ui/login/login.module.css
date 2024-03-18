@@ -2,7 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-content: center;
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .error {
@@ -13,116 +18,102 @@
 
 p {
   color: #232b2b;
+  margin-top: 25px;
+  width: 300px;
 }
 
 .form {
-  min-height: 520px;
-  min-width: 650px;
-  margin-top: 200px;
+  height: 490px;
+  width: 650px;
+  margin: 200px auto 0px 800px;
+  background-color: #edec89;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@media only screen and (max-width: 767px) {
-  .form {
-    min-height: 460px;
-    min-width: 430px;
-    margin-top: 150px;
+@media only screen and (max-width: 375px) {
+  .formContainer {
+    margin: -60px 0px 0px 0px;
   }
+
+  .form {
+    height: 480px;
+    width: 300px;
+    margin-right: 10px;
+  }
+
   p {
-    min-width: 260px;
+    width: 200px;
+    margin-top: 17px;
+    font-size: 15px;
   }
 }
 
-@media only screen and (min-width: 375px) and (max-width: 667px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
+@media only screen and (max-width: 390px) {
+  .formContainer {
+    margin: -40px 0px 0px 20px;
   }
   .form {
-    max-height: 450px;
-    max-width: 100px;
-    margin: 80px 0px 0px 37px;
+    height: 480px;
+    width: 300px;
+    margin-right: 10px;
   }
-}
 
-@media only screen and (min-width: 414px) and (max-width: 896px) {
-  .form {
-    margin: 150px 0px 0px 115px;
-  }
-}
-
-@media only screen and (min-width: 390px) and (max-width: 844px) {
-  .form {
-    max-height: 450px;
-    max-width: 10px;
-    margin: 150px 0px 0px 115px;
-  }
-}
-
-@media only screen and (min-width: 430px) and (max-width: 932px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
-  }
-}
-
-@media only screen and (min-width: 360px) and (max-width: 740px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
-  }
-  .form {
-    margin: 150px 0px 0px 50px;
-  }
-}
-
-@media only screen and (min-width: 412px) and (max-width: 915px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
-  }
-  .form {
-    margin: 150px 0px 0px 110px;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
-  }
-  .form {
-    margin: 180px 0px 0px 295px;
-  }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
-  .main {
-    min-height: 667px;
-    max-width: 250px;
-  }
-  .form {
-    margin: 180px 0px 0px 595px;
-  }
-}
-
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
   p {
-    min-width: 300px;
-    margin-top: 30px;
+    width: 200px;
+    margin-top: 17px;
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (max-width: 575.98px) {
+  .formContainer {
+    margin-right: 800px;
+  }
+  .form {
+    height: 480px;
+    width: 300px;
+    margin-top: 180px;
+  }
+
   p {
-    min-width: 300px;
-    margin-top: 30px;
+    width: 200px;
+    margin-top: 17px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .formContainer {
+    margin-right: 700px;
+  }
+  .form {
+    height: 560px;
+    width: 500px;
+    margin-top: 180px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .formContainer {
+    margin-right: 600px;
+  }
+}
+
+@media only screen and (min-width: 868px) {
+  .formContainer {
+    margin-right: 550px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .formContainer {
+    margin-left: 10px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  p {
-    min-width: 300px;
-    margin-top: 30px;
+  .formContainer {
+    margin-left: 200px;
   }
 }

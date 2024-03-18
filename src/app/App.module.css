@@ -1,7 +1,5 @@
 .app {
-  background-color: #b8cfbf;
-  min-height: 930px;
-  min-width: 380px;
+
 }
 
 .startApp {
@@ -24,7 +22,7 @@
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   background-color: #f0f0f0;
   color: #333;
   font-size: 20px;
@@ -33,6 +31,7 @@
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   margin: 10px 0px 0px auto;
+  text-wrap: nowrap;
 }
 
 .button:hover {
@@ -43,9 +42,6 @@
   outline: none;
 }
 
-@media only screen and (width: 375px) and (height: 667px) {
-  .app {
-    min-height: 500px;
-    min-width: 100px;
-  }
+@media only screen and (width: 375px) {
+ 
 }

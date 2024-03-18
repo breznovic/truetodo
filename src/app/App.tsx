@@ -7,6 +7,7 @@ import {
   Container,
   LinearProgress,
   Toolbar,
+  Grid,
 } from "@mui/material";
 import { Login } from "features/auth/ui/login/login";
 import { TodolistsList } from "features/TodolistsList/TodolistsList";
@@ -55,10 +56,14 @@ function App() {
           {status === "loading" && <LinearProgress />}
         </AppBar>
         <Container fixed>
-          <Routes>
-            <Route path={"/"} element={<TodolistsList />} />
-            <Route path={"/login"} element={<Login />} />
-          </Routes>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={8} md={6}>
+              <Routes>
+                <Route path={"/"} element={<TodolistsList />} />
+                <Route path={"/login"} element={<Login />} />
+              </Routes>
+            </Grid>
+          </Grid>
         </Container>
       </div>
     </BrowserRouter>

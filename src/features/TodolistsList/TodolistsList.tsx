@@ -103,9 +103,15 @@ export const TodolistsList = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <div>
-        <Container fixed>
+        <Container
+          fixed
+          sx={{
+            width: { xs: "350px", sm: "1000px", md: "1200px", xl: "1500px" },
+            paddingRight: { xs: "20px" },
+          }}
+        >
           <Grid container style={{ padding: "20px" }}>
             <Paper
               sx={{
@@ -121,33 +127,20 @@ export const TodolistsList = () => {
               />
             </Paper>
           </Grid>
-          <Grid container spacing={3}>
+          <Grid
+            container
+            spacing={3}
+            sx={{ flexDirection: { xs: "column", sm: "row", xl: "row" } }}
+          >
             {todolists.map((tl) => {
               let allTodolistTasks = tasks[tl.id];
               return (
-                <Grid item xs={12} sm={6} md={6} lg={4} key={tl.id}>
+                <Grid item xs="auto" sm={6} md={6} lg={4} xl="auto">
                   <Paper
                     sx={{
-                      display: "flex",
-                      flexWrap: "nowrap",
-                      justifyContent: "center",
-                      alignItems: "center",
                       padding: "10px",
                       backgroundColor: "#edec89",
                       marginLeft: "20px",
-                      width: "90%",
-                      [theme.breakpoints.up("xs")]: {
-                        width: "85%",
-                      },
-                      [theme.breakpoints.up("sm")]: {
-                        width: "88%",
-                      },
-                      [theme.breakpoints.up("md")]: {
-                        width: "88%",
-                      },
-                      [theme.breakpoints.up("lg")]: {
-                        width: "88%",
-                      },
                     }}
                     elevation={12}
                   >
@@ -169,6 +162,6 @@ export const TodolistsList = () => {
           </Grid>
         </Container>
       </div>
-    </ThemeProvider>
+    </>
   );
 };
