@@ -135,7 +135,7 @@ export const TodolistsList = () => {
             {todolists.map((tl) => {
               let allTodolistTasks = tasks[tl.id];
               return (
-                <Grid item xs="auto" sm={6} md={6} lg={4} xl="auto">
+                <Grid item xs="auto" sm={6} md={6} lg={4} xl="auto" key={tl.id}>
                   <Paper
                     sx={{
                       padding: "10px",
